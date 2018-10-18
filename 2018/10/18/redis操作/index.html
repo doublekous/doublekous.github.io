@@ -125,21 +125,24 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="http://yoursite.com/2018/10/13/你好，hexo/index.html">
+  <meta name="description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli -h 17">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis操作">
+<meta property="og:url" content="http://yoursite.com/2018/10/18/redis操作/index.html">
 <meta property="og:site_name" content="LV.blog">
+<meta property="og:description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli -h 17">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-13T03:54:44.229Z">
+<meta property="og:updated_time" content="2018-10-18T07:59:52.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="redis操作">
+<meta name="twitter:description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli -h 17">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/13/你好，hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/18/redis操作/"/>
 
 
 
@@ -149,7 +152,7 @@
   };
 </script>
 
-  <title>你好，hexo | LV.blog</title>
+  <title>redis操作 | LV.blog</title>
   
 
 
@@ -353,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/你好，hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/redis操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LV">
@@ -370,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">你好，hexo
+          <h1 class="post-title" itemprop="name headline">redis操作
               
             
           </h1>
@@ -395,9 +398,13 @@
                 
               
 
-              <time title="Created: 2018-10-13 11:54:44" itemprop="dateCreated datePublished" datetime="2018-10-13T11:54:44+08:00">2018-10-13</time>
+              <time title="Created: 2018-10-18 11:57:25 / Modified: 15:59:52" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -429,7 +436,31 @@
       
 
       
-        
+        <blockquote>
+<p>##redis命令查询网站：redisdoc.com<br>配置redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 !ifconfig  修改私网 172.17.139.13</span><br><span class="line">2 port 6379默认</span><br><span class="line">3 appendonly 改为yes</span><br><span class="line">4 password 设置密码</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>如果连入别人的服务器需要输入该人的公网ip以及密码，进入后能够进行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get/set+ex(设置存在时间)/del/keys l*/</span><br><span class="line">ttl &lt;name&gt; 查看时-1代表永久存在</span><br><span class="line">默认开了16个库</span><br><span class="line">select1 切换到1库</span><br><span class="line">flushdb 清除当前数据库所有</span><br><span class="line">save 保存数据</span><br><span class="line">bgsave 后台保存</span><br><span class="line">expire name time  给永久的name设置存在时间</span><br><span class="line">incr 增加 </span><br><span class="line">decr 减少</span><br><span class="line">netstat -nap | grep redis 查看redis进程</span><br></pre></td></tr></table></figure></p>
+<p>redis-benchmark -h ip -a password 检测</p>
+<blockquote>
+<p>##redis常用类型</p>
+<p>###字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">get</span><br><span class="line">set</span><br><span class="line">strlen</span><br><span class="line">incr</span><br><span class="line">desc</span><br><span class="line">setnx 如果不存在才赋值</span><br><span class="line">setex 指定存在时间</span><br><span class="line">mset 添加多对键值对</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##哈希表(最适合保存对象信息)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">创建学生对象</span><br><span class="line">hset stu1 id 1001</span><br><span class="line">hset stu1 name luohao</span><br><span class="line">hset stu1 age 38</span><br><span class="line">hset stu1 gender male</span><br><span class="line">hset stu2 id 1002</span><br><span class="line">hset stu2 name wangdachui</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">获取学生</span><br><span class="line">hget stu1 name</span><br><span class="line">hget sut1 gender</span><br><span class="line"></span><br><span class="line">一次性拿取</span><br><span class="line">hgetall stu1 拿取stu1所有键值对</span><br><span class="line">一次性创建</span><br><span class="line">hmset stu3 id 1003 name liyuanfang gender male age 15</span><br><span class="line"></span><br><span class="line">删除键值对对应的某一个键（某一个字段）</span><br><span class="line">hdel stu3 age</span><br><span class="line">检查键值对中指定的某个字段是否存在</span><br><span class="line">hexists</span><br><span class="line"></span><br><span class="line">hkeys </span><br><span class="line">查看字段长度</span><br><span class="line">hlen stu1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lpush list1 1 2 3 4 5 (结果是5 4 3 2 1)</span><br><span class="line">lpop list1 取list1中的元素</span><br><span class="line">rpush list1 3 30 300 3000(结果是3 30 300 3000)</span><br><span class="line">llen list1 (计算长度)</span><br><span class="line">lrange list1 0 -1 (查看所有元素)</span><br><span class="line">lset list1 1 1000 (将list1中下标1改成1000)</span><br><span class="line">blpop list1 100 阻塞功能</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 10 20 20 30 10 40 40  （集合会自动去重 只有4个元素）</span><br><span class="line">smemebers set1 查看set1中的元素</span><br><span class="line">sunion set1 set2 并集</span><br><span class="line">sdiff set1 set2 交集</span><br><span class="line">sismember set1 10 查看set1中是否有10</span><br><span class="line">srandmember set1 随机取一个元素</span><br><span class="line">srem set1 20 移除set1中的20</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##有序集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zadd zs1 12.5 apple 5.3 orange 3.5 duirin 建立有序集合</span><br><span class="line">zrange zs1 0 -1 查找</span><br><span class="line">zrangebyscore zs1 10 20 指定查找值范围</span><br><span class="line">zrank zs1 apple 排名第几</span><br><span class="line">zreverange zs1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
       
     </div>
 
@@ -474,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/13/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/10/17/pycharm环境下修改mysql/" rel="next" title="pycharm环境下修改mysql">
+                <i class="fa fa-chevron-left"></i> pycharm环境下修改mysql
               </a>
             
           </div>
@@ -483,10 +514,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/13/hello/" rel="prev" title="hello">
-                hello <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

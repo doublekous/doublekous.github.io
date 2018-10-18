@@ -353,6 +353,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/redis操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/redis操作/" itemprop="url">
+                  redis操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-18 11:57:25 / Modified: 15:59:52" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>##redis命令查询网站：redisdoc.com<br>配置redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 !ifconfig  修改私网 172.17.139.13</span><br><span class="line">2 port 6379默认</span><br><span class="line">3 appendonly 改为yes</span><br><span class="line">4 password 设置密码</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>如果连入别人的服务器需要输入该人的公网ip以及密码，进入后能够进行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get/set+ex(设置存在时间)/del/keys l*/</span><br><span class="line">ttl &lt;name&gt; 查看时-1代表永久存在</span><br><span class="line">默认开了16个库</span><br><span class="line">select1 切换到1库</span><br><span class="line">flushdb 清除当前数据库所有</span><br><span class="line">save 保存数据</span><br><span class="line">bgsave 后台保存</span><br><span class="line">expire name time  给永久的name设置存在时间</span><br><span class="line">incr 增加 </span><br><span class="line">decr 减少</span><br><span class="line">netstat -nap | grep redis 查看redis进程</span><br></pre></td></tr></table></figure></p>
+<p>redis-benchmark -h ip -a password 检测</p>
+<blockquote>
+<p>##redis常用类型</p>
+<p>###字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">get</span><br><span class="line">set</span><br><span class="line">strlen</span><br><span class="line">incr</span><br><span class="line">desc</span><br><span class="line">setnx 如果不存在才赋值</span><br><span class="line">setex 指定存在时间</span><br><span class="line">mset 添加多对键值对</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##哈希表(最适合保存对象信息)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">创建学生对象</span><br><span class="line">hset stu1 id 1001</span><br><span class="line">hset stu1 name luohao</span><br><span class="line">hset stu1 age 38</span><br><span class="line">hset stu1 gender male</span><br><span class="line">hset stu2 id 1002</span><br><span class="line">hset stu2 name wangdachui</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">获取学生</span><br><span class="line">hget stu1 name</span><br><span class="line">hget sut1 gender</span><br><span class="line"></span><br><span class="line">一次性拿取</span><br><span class="line">hgetall stu1 拿取stu1所有键值对</span><br><span class="line">一次性创建</span><br><span class="line">hmset stu3 id 1003 name liyuanfang gender male age 15</span><br><span class="line"></span><br><span class="line">删除键值对对应的某一个键（某一个字段）</span><br><span class="line">hdel stu3 age</span><br><span class="line">检查键值对中指定的某个字段是否存在</span><br><span class="line">hexists</span><br><span class="line"></span><br><span class="line">hkeys </span><br><span class="line">查看字段长度</span><br><span class="line">hlen stu1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lpush list1 1 2 3 4 5 (结果是5 4 3 2 1)</span><br><span class="line">lpop list1 取list1中的元素</span><br><span class="line">rpush list1 3 30 300 3000(结果是3 30 300 3000)</span><br><span class="line">llen list1 (计算长度)</span><br><span class="line">lrange list1 0 -1 (查看所有元素)</span><br><span class="line">lset list1 1 1000 (将list1中下标1改成1000)</span><br><span class="line">blpop list1 100 阻塞功能</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 10 20 20 30 10 40 40  （集合会自动去重 只有4个元素）</span><br><span class="line">smemebers set1 查看set1中的元素</span><br><span class="line">sunion set1 set2 并集</span><br><span class="line">sdiff set1 set2 交集</span><br><span class="line">sismember set1 10 查看set1中是否有10</span><br><span class="line">srandmember set1 随机取一个元素</span><br><span class="line">srem set1 20 移除set1中的20</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##有序集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zadd zs1 12.5 apple 5.3 orange 3.5 duirin 建立有序集合</span><br><span class="line">zrange zs1 0 -1 查找</span><br><span class="line">zrangebyscore zs1 10 20 指定查找值范围</span><br><span class="line">zrank zs1 apple 排名第几</span><br><span class="line">zreverange zs1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/pycharm环境下修改mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1081,7 +1252,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-16 17:40:04" itemprop="dateModified" datetime="2018-10-16T17:40:04+08:00">2018-10-16</time>
+                <time title="Modified: 2018-10-18 11:11:54" itemprop="dateModified" datetime="2018-10-18T11:11:54+08:00">2018-10-18</time>
               
             
           </span>
@@ -1155,6 +1326,9 @@
 <p>##E-R图（实体关系图）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">E-R图 （实体关系图）</span><br><span class="line">外键/外键约束 - 外来的主键 - 参照完整性</span><br><span class="line">数据的完整性</span><br><span class="line">    - 实体完整性：每一条记录都是独一无二的没有冗余</span><br><span class="line">            主键/唯一索引（唯一约束）</span><br><span class="line">    - 参照完整性：B表参照了A表，A表没有的记录在B表中决不能出现</span><br><span class="line">            外键</span><br><span class="line">    - 域完整性：录入的数据都是有效的，</span><br><span class="line">            数据类型/非空约束/默认值约束/检查约束（check 属性 在MySQL中不生效）</span><br></pre></td></tr></table></figure>
 <h1 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">max()</span><br><span class="line">min()</span><br><span class="line">sum()</span><br><span class="line">avg()</span><br><span class="line">count()</span><br></pre></td></tr></table></figure>
+<p>#数据的一致性 - 事物（多个操作要么全做要么全部做）<br>事物的ACID特性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Atomicity 原子性 - 不可分割</span><br><span class="line">Consistency 一致性 - 事物前后数据状态一致</span><br><span class="line">Isolation 隔离性 - 多个事物不能看到彼此的中间状态</span><br><span class="line">Duration 持久性 - 事物完成后数据要持久化</span><br></pre></td></tr></table></figure></p>
+<p>再出现并发事务访问数据的时候，数据库底层有锁机制来保护数据<br>但是通常我们在写SQL的时候不用显示的书写锁操作<br>数据库会根据我们设定的事物来隔离级别自动的数据加锁<br>并发数据访问可能出现的5中问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">第一类丢失更新</span><br><span class="line">第二类丢失更新</span><br><span class="line">脏读 --- 一个事物读到了另一个事物尚未提交的数据</span><br><span class="line">不可重复读 --- 一个事物在读取查询时发现其他事物跟新了数据导致无法读取</span><br><span class="line">幻读  --- 一个事物在执行查询的时候发现被其他事物提交了新的数据</span><br><span class="line"></span><br><span class="line">Read Uncommitted</span><br><span class="line">Read Committed</span><br><span class="line">Repeatable Read</span><br><span class="line">Serializable</span><br></pre></td></tr></table></figure></p>
+<p>改事物隔离级别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set session transaction isolation level read committed;</span><br><span class="line">select @@transaction_isolation;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1686,7 +1860,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1791,7 +1965,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.4k字</span>
+  <span class="post-count">博客全站共5.3k字</span>
 </div>
 
 
