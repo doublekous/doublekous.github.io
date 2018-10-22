@@ -353,6 +353,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/第三阶段框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/22/第三阶段框架/" itemprop="url">
+                  第三阶段框架
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-22 10:05:25 / Modified: 20:52:52" itemprop="dateCreated datePublished" datetime="2018-10-22T10:05:25+08:00">2018-10-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MVC<br>M (模型层)<br>V（视图层）<br>C （业务层）</p>
+<p>MVT<br>M （模型层）<br>V （视图）：处理业务逻辑<br>T （模板）：html</p>
+<blockquote>
+<h2 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>VENV使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">参数说明</span><br><span class="line">-p 指定版本</span><br><span class="line">--no-site-packages 指定不需要之前的包(纯干净环境)</span><br><span class="line">virtualenv --no-site-packages -p d:/python/python.exe djvenv</span><br><span class="line">多个python版本：</span><br><span class="line">virtualenv --no-site-packages -p d:/xxxx/python3.7.exe name </span><br><span class="line">pip list 查看安装的包</span><br><span class="line">pip freeze 查看版本</span><br><span class="line">python -m pip install --upgrade pip 升级pip命令</span><br><span class="line">如上 在djvenv/script 执行activate就会进入虚拟环境，使用deactivate退出虚拟环境</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h2 id="创建django项目"><a href="#创建django项目" class="headerlink" title="创建django项目"></a>创建django项目</h2><p>创建项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject &lt;ptoject-name&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>启动文件说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">manage.py 启动项目管理文件</span><br><span class="line">settings.py 项目配置文件</span><br><span class="line">urls.py 资源定位文件</span><br><span class="line">python manage.py runserver IP:PORT or python manage.py runserver PORT  启动django项目</span><br></pre></td></tr></table></figure></p>
+<p>访问管理后台 admin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8080/admin/</span><br></pre></td></tr></table></figure></p>
+<p>修改数据库配置settintgs.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENGINE, USER, PASSWORD, HOST, PORT, NAME</span><br></pre></td></tr></table></figure></p>
+<p>映射模型到数据库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure></p>
+<p>安装数据库驱动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br></pre></td></tr></table></figure></p>
+<p>初始化数据库驱动<strong>init</strong>.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_mysqldb()</span><br></pre></td></tr></table></figure></p>
+<p>创建超级管理员命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuroeruser</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/redis操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,12 +562,24 @@
                 
               
 
-              <time title="Created: 2018-10-18 11:57:25 / Modified: 15:59:52" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
+              <time title="Created: 2018-10-18 11:57:25" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-19 12:02:51" itemprop="dateModified" datetime="2018-10-19T12:02:51+08:00">2018-10-19</time>
               
             
           </span>
@@ -443,9 +618,12 @@
 <p>##redis命令查询网站：redisdoc.com<br>配置redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 !ifconfig  修改私网 172.17.139.13</span><br><span class="line">2 port 6379默认</span><br><span class="line">3 appendonly 改为yes</span><br><span class="line">4 password 设置密码</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br></pre></td></tr></table></figure></p>
+<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">一：</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br><span class="line">二：</span><br><span class="line">redis-server --port 1234 --requirepass 123456 appendonly yes &gt; redis.log &amp;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>如果连入别人的服务器需要输入该人的公网ip以及密码，进入后能够进行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get/set+ex(设置存在时间)/del/keys l*/</span><br><span class="line">ttl &lt;name&gt; 查看时-1代表永久存在</span><br><span class="line">默认开了16个库</span><br><span class="line">select1 切换到1库</span><br><span class="line">flushdb 清除当前数据库所有</span><br><span class="line">save 保存数据</span><br><span class="line">bgsave 后台保存</span><br><span class="line">expire name time  给永久的name设置存在时间</span><br><span class="line">incr 增加 </span><br><span class="line">decr 减少</span><br><span class="line">netstat -nap | grep redis 查看redis进程</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>##停止服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill 进程号</span><br><span class="line">Ctrl + c</span><br><span class="line">客户端 &gt; shutdowan</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 <p>redis-benchmark -h ip -a password 检测</p>
 <blockquote>
 <p>##redis常用类型</p>
@@ -462,6 +640,12 @@
 </blockquote>
 <blockquote>
 <p>##有序集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zadd zs1 12.5 apple 5.3 orange 3.5 duirin 建立有序集合</span><br><span class="line">zrange zs1 0 -1 查找</span><br><span class="line">zrangebyscore zs1 10 20 指定查找值范围</span><br><span class="line">zrank zs1 apple 排名第几</span><br><span class="line">zreverange zs1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##网站优化两大定律<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1，缓存 - 用空间换时间 (Redis)</span><br><span class="line">2，削峰 -  能推迟的事情都不要马上做 (RabbitMQ / RocketMQ)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##主从复制<br><code>`</code><br>master不用修改任何设置<br>slave修改两条配置：<br>slaveof master的ip地址 master的端口<br>masterrauth master的口令<br>redis-cli 连自己的redis服务器<br>info replication<br>role：master/slave<br>connected_slaves:2</p>
 </blockquote>
 
           
@@ -1075,7 +1259,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-16 17:06:25" itemprop="dateModified" datetime="2018-10-16T17:06:25+08:00">2018-10-16</time>
+                <time title="Modified: 2018-10-22 19:26:27" itemprop="dateModified" datetime="2018-10-22T19:26:27+08:00">2018-10-22</time>
               
             
           </span>
@@ -1126,7 +1310,34 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>上传通常用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><ul>
+<li>添加文件到版本库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>提交文件到仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;解释提交信息&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>仓库状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看具体修改了什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>版本回退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git reset --hard head^ or git reset --hard 版本号</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>记录命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm &lt;name&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
           
@@ -1252,7 +1463,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-18 11:11:54" itemprop="dateModified" datetime="2018-10-18T11:11:54+08:00">2018-10-18</time>
+                <time title="Modified: 2018-10-19 15:55:45" itemprop="dateModified" datetime="2018-10-19T15:55:45+08:00">2018-10-19</time>
               
             
           </span>
@@ -1293,7 +1504,7 @@
 </li>
 <li><p>文件操作（读写文件）-  文本文件 / Excel</p>
 </li>
-<li><p>当我们做数据持久化操作室不仅仅是希望能够把数据长久的保存起来，更为重要的是我们希望很方便的管理数据，在需要数据的时候能够很方便的把需要的数据取出来。</p>
+<li><p>当我们做数据持久化操作时不仅仅是希望能够把数据长久的保存起来，更为重要的是我们希望很方便的管理数据，在需要数据的时候能够很方便的把需要的数据取出来。</p>
 </li>
 <li><p>1970s IBM - 关系型数据库<br>理论基础：关系代数和集合论<br>具体表象：用二维表来组织数据<br>学生表<br>行：记录（1001 吕耐芯 1996年1月 男 四川乐山）<br>列：字段（学号，姓名，出生日期，性别，家庭住址）<br>有自己的编程语言 - SQL(结构化查询语言)</p>
 </li>
@@ -1301,7 +1512,7 @@
 <p>#两大类型数据库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">关系型数据库</span><br><span class="line">非关系型数据库</span><br></pre></td></tr></table></figure></p>
 <h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- DDL (数据定义语言)：create（创建） / drop(删除) / alter（修改）</span><br><span class="line">- DML（数据操作语言）：insert(插入) / delete(删除) /update(查找) /select(收集)</span><br><span class="line">- DCL（数据控制语言）：grant（） /revoke（召回）</span><br><span class="line"></span><br><span class="line">- 关系型数据库产品：</span><br><span class="line"></span><br><span class="line">  Oracle - Oracle</span><br><span class="line"></span><br><span class="line">  MySQL - Oracle</span><br><span class="line">  </span><br><span class="line">  DB -Database  - 一堆文件</span><br><span class="line">  DBMS - Database Management System - 软件</span><br><span class="line">  DBA - Database Administrator</span><br></pre></td></tr></table></figure>
 <h1 id="初识MySQL"><a href="#初识MySQL" class="headerlink" title="初识MySQL"></a>初识MySQL</h1><blockquote>
-<p>##命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">create database school default charset utf8;    创建学校数据库并且设置编码为utf8</span><br><span class="line">drop database if exists school;    如果存在就删除</span><br><span class="line">use school;</span><br><span class="line">create table tb_student    #创建二维表保存数据 </span><br><span class="line">(                          #列名 数据类型 约束条件   default（默认值约束）</span><br><span class="line">stuid int not null unique(stuid),       #添加唯一性约束 </span><br><span class="line">stuname varchar(20) not null,</span><br><span class="line">gender bit not null default 1,</span><br><span class="line">birth date, </span><br><span class="line">addr varchar(50) not null,</span><br><span class="line">primary key (stuid)         #主键  - 表中能够唯一标识一条记录的列</span><br><span class="line">);                          # 主键约束  - primary key </span><br><span class="line"></span><br><span class="line">修改表</span><br><span class="line">alter table tb_student add column tel char(11) not null;</span><br><span class="line">alter table tb_student drop column tel;</span><br><span class="line">插入数据（单行插入）</span><br><span class="line">insert into tb_student values</span><br><span class="line">(10001, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;)</span><br><span class="line">插入数据（多行插入）</span><br><span class="line">insert into tb_student(&apos;可以填上对应的值&apos;) values</span><br><span class="line">(10001, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;),</span><br><span class="line">(10002, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;),</span><br><span class="line">(10003, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;);</span><br><span class="line">删除数据</span><br><span class="line">delete from tb_student where stuid=10001;</span><br><span class="line">delete from tb_student where stuname=&apos;吕耐芯帅&apos;</span><br><span class="line">删除区间数据</span><br><span class="line">delete from tb_student where stuid in (10001, 10002);</span><br><span class="line">截断数据（删除全表）</span><br><span class="line">truncate table tb_student;</span><br><span class="line">更新数据</span><br><span class="line">update tb_student set addr=&apos;四川绵阳&apos;, gender=0 where stuid in (10006, 10007);</span><br></pre></td></tr></table></figure></p>
+<p>##命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">drop database if exists school;    如果存在就删除</span><br><span class="line">create database school default charset utf8;    创建学校数据库并且设置编码为utf8</span><br><span class="line">use school;</span><br><span class="line">create table tb_student    #创建二维表保存数据 </span><br><span class="line">(                          #列名 数据类型 约束条件   default（默认值约束）</span><br><span class="line">stuid int not null unique(stuid),       #添加唯一性约束 </span><br><span class="line">stuname varchar(20) not null,</span><br><span class="line">gender bit not null default 1,</span><br><span class="line">birth date, </span><br><span class="line">addr varchar(50) not null,</span><br><span class="line">primary key (stuid)         #主键  - 表中能够唯一标识一条记录的列</span><br><span class="line">);                          # 主键约束  - primary key </span><br><span class="line"></span><br><span class="line">修改表</span><br><span class="line">alter table tb_student add column tel char(11) not null;</span><br><span class="line">alter table tb_student drop column tel;</span><br><span class="line">插入数据（单行插入）</span><br><span class="line">insert into tb_student values</span><br><span class="line">(10001, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;)</span><br><span class="line">插入数据（多行插入）</span><br><span class="line">insert into tb_student(&apos;可以填上对应的值&apos;) values</span><br><span class="line">(10001, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;),</span><br><span class="line">(10002, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;),</span><br><span class="line">(10003, &apos;吕耐芯&apos;, 1, &apos;19960103&apos;, &apos;四川乐山&apos;);</span><br><span class="line">删除数据</span><br><span class="line">delete from tb_student where stuid=10001;</span><br><span class="line">delete from tb_student where stuname=&apos;吕耐芯帅&apos;</span><br><span class="line">删除区间数据</span><br><span class="line">delete from tb_student where stuid in (10001, 10002);</span><br><span class="line">截断数据（删除全表）</span><br><span class="line">truncate table tb_student;</span><br><span class="line">更新数据</span><br><span class="line">update tb_student set addr=&apos;四川绵阳&apos;, gender=0 where stuid in (10006, 10007);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <ul>
 <li><p>查询数据</p>
@@ -1326,9 +1537,10 @@
 <p>##E-R图（实体关系图）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">E-R图 （实体关系图）</span><br><span class="line">外键/外键约束 - 外来的主键 - 参照完整性</span><br><span class="line">数据的完整性</span><br><span class="line">    - 实体完整性：每一条记录都是独一无二的没有冗余</span><br><span class="line">            主键/唯一索引（唯一约束）</span><br><span class="line">    - 参照完整性：B表参照了A表，A表没有的记录在B表中决不能出现</span><br><span class="line">            外键</span><br><span class="line">    - 域完整性：录入的数据都是有效的，</span><br><span class="line">            数据类型/非空约束/默认值约束/检查约束（check 属性 在MySQL中不生效）</span><br></pre></td></tr></table></figure>
 <h1 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">max()</span><br><span class="line">min()</span><br><span class="line">sum()</span><br><span class="line">avg()</span><br><span class="line">count()</span><br></pre></td></tr></table></figure>
-<p>#数据的一致性 - 事物（多个操作要么全做要么全部做）<br>事物的ACID特性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Atomicity 原子性 - 不可分割</span><br><span class="line">Consistency 一致性 - 事物前后数据状态一致</span><br><span class="line">Isolation 隔离性 - 多个事物不能看到彼此的中间状态</span><br><span class="line">Duration 持久性 - 事物完成后数据要持久化</span><br></pre></td></tr></table></figure></p>
+<p>#数据的一致性 - 事物（多个操作要么全做要么全不做）<br>事物的ACID特性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Atomicity 原子性 - 不可分割</span><br><span class="line">Consistency 一致性 - 事物前后数据状态一致</span><br><span class="line">Isolation 隔离性 - 多个事物不能看到彼此的中间状态</span><br><span class="line">Duration 持久性 - 事物完成后数据要持久化</span><br></pre></td></tr></table></figure></p>
 <p>再出现并发事务访问数据的时候，数据库底层有锁机制来保护数据<br>但是通常我们在写SQL的时候不用显示的书写锁操作<br>数据库会根据我们设定的事物来隔离级别自动的数据加锁<br>并发数据访问可能出现的5中问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">第一类丢失更新</span><br><span class="line">第二类丢失更新</span><br><span class="line">脏读 --- 一个事物读到了另一个事物尚未提交的数据</span><br><span class="line">不可重复读 --- 一个事物在读取查询时发现其他事物跟新了数据导致无法读取</span><br><span class="line">幻读  --- 一个事物在执行查询的时候发现被其他事物提交了新的数据</span><br><span class="line"></span><br><span class="line">Read Uncommitted</span><br><span class="line">Read Committed</span><br><span class="line">Repeatable Read</span><br><span class="line">Serializable</span><br></pre></td></tr></table></figure></p>
 <p>改事物隔离级别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set session transaction isolation level read committed;</span><br><span class="line">select @@transaction_isolation;</span><br></pre></td></tr></table></figure></p>
+<p>Redis放的应该是体量不大的热点数据</p>
 
           
         
@@ -1860,7 +2072,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1965,7 +2177,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.3k字</span>
+  <span class="post-count">博客全站共5.8k字</span>
 </div>
 
 

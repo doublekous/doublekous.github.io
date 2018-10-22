@@ -125,21 +125,24 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="http://yoursite.com/2018/10/13/你好，hexo/index.html">
+  <meta name="description" content="MVCM (模型层)V（视图层）C （业务层） MVTM （模型层）V （视图）：处理业务逻辑T （模板）：html  安装虚拟环境1pip install virtualenv  VENV使用12345678910参数说明-p 指定版本--no-site-packages 指定不需要之前的包(纯干净环境)virtualenv --no-site-packages -p d:/python/pyt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三阶段框架">
+<meta property="og:url" content="http://yoursite.com/2018/10/22/第三阶段框架/index.html">
 <meta property="og:site_name" content="LV.blog">
+<meta property="og:description" content="MVCM (模型层)V（视图层）C （业务层） MVTM （模型层）V （视图）：处理业务逻辑T （模板）：html  安装虚拟环境1pip install virtualenv  VENV使用12345678910参数说明-p 指定版本--no-site-packages 指定不需要之前的包(纯干净环境)virtualenv --no-site-packages -p d:/python/pyt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-13T03:54:44.229Z">
+<meta property="og:updated_time" content="2018-10-22T12:52:52.381Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="第三阶段框架">
+<meta name="twitter:description" content="MVCM (模型层)V（视图层）C （业务层） MVTM （模型层）V （视图）：处理业务逻辑T （模板）：html  安装虚拟环境1pip install virtualenv  VENV使用12345678910参数说明-p 指定版本--no-site-packages 指定不需要之前的包(纯干净环境)virtualenv --no-site-packages -p d:/python/pyt">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/13/你好，hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/22/第三阶段框架/"/>
 
 
 
@@ -149,7 +152,7 @@
   };
 </script>
 
-  <title>你好，hexo | LV.blog</title>
+  <title>第三阶段框架 | LV.blog</title>
   
 
 
@@ -353,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/你好，hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/第三阶段框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LV">
@@ -370,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">你好，hexo
+          <h1 class="post-title" itemprop="name headline">第三阶段框架
               
             
           </h1>
@@ -395,9 +398,13 @@
                 
               
 
-              <time title="Created: 2018-10-13 11:54:44" itemprop="dateCreated datePublished" datetime="2018-10-13T11:54:44+08:00">2018-10-13</time>
+              <time title="Created: 2018-10-22 10:05:25 / Modified: 20:52:52" itemprop="dateCreated datePublished" datetime="2018-10-22T10:05:25+08:00">2018-10-22</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -429,7 +436,23 @@
       
 
       
-        
+        <p>MVC<br>M (模型层)<br>V（视图层）<br>C （业务层）</p>
+<p>MVT<br>M （模型层）<br>V （视图）：处理业务逻辑<br>T （模板）：html</p>
+<blockquote>
+<h2 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>VENV使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">参数说明</span><br><span class="line">-p 指定版本</span><br><span class="line">--no-site-packages 指定不需要之前的包(纯干净环境)</span><br><span class="line">virtualenv --no-site-packages -p d:/python/python.exe djvenv</span><br><span class="line">多个python版本：</span><br><span class="line">virtualenv --no-site-packages -p d:/xxxx/python3.7.exe name </span><br><span class="line">pip list 查看安装的包</span><br><span class="line">pip freeze 查看版本</span><br><span class="line">python -m pip install --upgrade pip 升级pip命令</span><br><span class="line">如上 在djvenv/script 执行activate就会进入虚拟环境，使用deactivate退出虚拟环境</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h2 id="创建django项目"><a href="#创建django项目" class="headerlink" title="创建django项目"></a>创建django项目</h2><p>创建项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject &lt;ptoject-name&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>启动文件说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">manage.py 启动项目管理文件</span><br><span class="line">settings.py 项目配置文件</span><br><span class="line">urls.py 资源定位文件</span><br><span class="line">python manage.py runserver IP:PORT or python manage.py runserver PORT  启动django项目</span><br></pre></td></tr></table></figure></p>
+<p>访问管理后台 admin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8080/admin/</span><br></pre></td></tr></table></figure></p>
+<p>修改数据库配置settintgs.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ENGINE, USER, PASSWORD, HOST, PORT, NAME</span><br></pre></td></tr></table></figure></p>
+<p>映射模型到数据库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure></p>
+<p>安装数据库驱动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br></pre></td></tr></table></figure></p>
+<p>初始化数据库驱动<strong>init</strong>.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_mysqldb()</span><br></pre></td></tr></table></figure></p>
+<p>创建超级管理员命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuroeruser</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -474,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/13/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/10/18/redis操作/" rel="next" title="redis操作">
+                <i class="fa fa-chevron-left"></i> redis操作
               </a>
             
           </div>
@@ -483,10 +506,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/13/hello/" rel="prev" title="hello">
-                hello <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -531,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -605,6 +633,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装虚拟环境"><span class="nav-number">1.</span> <span class="nav-text">安装虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建django项目"><span class="nav-number">2.</span> <span class="nav-text">创建django项目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

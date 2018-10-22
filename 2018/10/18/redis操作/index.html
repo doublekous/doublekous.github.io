@@ -125,17 +125,17 @@
 
 
 
-  <meta name="description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli -h 17">
+  <meta name="description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234567一：redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis操作">
 <meta property="og:url" content="http://yoursite.com/2018/10/18/redis操作/index.html">
 <meta property="og:site_name" content="LV.blog">
-<meta property="og:description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli -h 17">
+<meta property="og:description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234567一：redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T07:59:52.372Z">
+<meta property="og:updated_time" content="2018-10-19T04:02:51.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis操作">
-<meta name="twitter:description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli -h 17">
+<meta name="twitter:description" content="##redis命令查询网站：redisdoc.com配置redis12341 !ifconfig  修改私网 172.17.139.132 port 6379默认3 appendonly 改为yes4 password 设置密码   连接服务器1234567一：redis-server redis.conf &amp;gt; redis.log &amp;amp;  启动服务器并且在后台运行redis-cli">
 
 
 
@@ -398,12 +398,24 @@
                 
               
 
-              <time title="Created: 2018-10-18 11:57:25 / Modified: 15:59:52" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
+              <time title="Created: 2018-10-18 11:57:25" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-19 12:02:51" itemprop="dateModified" datetime="2018-10-19T12:02:51+08:00">2018-10-19</time>
               
             
           </span>
@@ -440,9 +452,12 @@
 <p>##redis命令查询网站：redisdoc.com<br>配置redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 !ifconfig  修改私网 172.17.139.13</span><br><span class="line">2 port 6379默认</span><br><span class="line">3 appendonly 改为yes</span><br><span class="line">4 password 设置密码</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br></pre></td></tr></table></figure></p>
+<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">一：</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br><span class="line">二：</span><br><span class="line">redis-server --port 1234 --requirepass 123456 appendonly yes &gt; redis.log &amp;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>如果连入别人的服务器需要输入该人的公网ip以及密码，进入后能够进行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get/set+ex(设置存在时间)/del/keys l*/</span><br><span class="line">ttl &lt;name&gt; 查看时-1代表永久存在</span><br><span class="line">默认开了16个库</span><br><span class="line">select1 切换到1库</span><br><span class="line">flushdb 清除当前数据库所有</span><br><span class="line">save 保存数据</span><br><span class="line">bgsave 后台保存</span><br><span class="line">expire name time  给永久的name设置存在时间</span><br><span class="line">incr 增加 </span><br><span class="line">decr 减少</span><br><span class="line">netstat -nap | grep redis 查看redis进程</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>##停止服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill 进程号</span><br><span class="line">Ctrl + c</span><br><span class="line">客户端 &gt; shutdowan</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 <p>redis-benchmark -h ip -a password 检测</p>
 <blockquote>
 <p>##redis常用类型</p>
@@ -459,6 +474,12 @@
 </blockquote>
 <blockquote>
 <p>##有序集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zadd zs1 12.5 apple 5.3 orange 3.5 duirin 建立有序集合</span><br><span class="line">zrange zs1 0 -1 查找</span><br><span class="line">zrangebyscore zs1 10 20 指定查找值范围</span><br><span class="line">zrank zs1 apple 排名第几</span><br><span class="line">zreverange zs1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##网站优化两大定律<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1，缓存 - 用空间换时间 (Redis)</span><br><span class="line">2，削峰 -  能推迟的事情都不要马上做 (RabbitMQ / RocketMQ)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##主从复制<br><code>`</code><br>master不用修改任何设置<br>slave修改两条配置：<br>slaveof master的ip地址 master的端口<br>masterrauth master的口令<br>redis-cli 连自己的redis服务器<br>info replication<br>role：master/slave<br>connected_slaves:2</p>
 </blockquote>
 
       
@@ -514,6 +535,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/22/第三阶段框架/" rel="prev" title="第三阶段框架">
+                第三阶段框架 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -578,7 +603,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -683,7 +708,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.3k字</span>
+  <span class="post-count">博客全站共5.8k字</span>
 </div>
 
 
