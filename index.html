@@ -353,6 +353,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/djangjo-day04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/25/djangjo-day04/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-25 20:47:26 / Modified: 20:46:21" itemprop="dateCreated datePublished" datetime="2018-10-25T20:47:26+08:00">2018-10-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h2 id="在models-py-中添加Course（models-Model）类"><a href="#在models-py-中添加Course（models-Model）类" class="headerlink" title="在models.py 中添加Course（models.Model）类"></a>在models.py 中添加Course（models.Model）类</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Course(models.Model)</span><br><span class="line">	c_name = models.CharField(max_length=10)</span><br><span class="line">	# 多对多字段</span><br><span class="line">	stu = models.ManyToManyField(Student)</span><br><span class="line">	</span><br><span class="line">	class Meta:</span><br><span class="line">		db_table = &apos;course&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="迁移表"><a href="#迁移表" class="headerlink" title="迁移表"></a>迁移表</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="先在models-py中建立Course类"><a href="#先在models-py中建立Course类" class="headerlink" title="先在models.py中建立Course类"></a>先在models.py中建立Course类</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Course(models.Model):</span><br><span class="line">	c_name = models.CharField(max_length=10)</span><br><span class="line">	stu = models.ManyToManyField(Student)</span><br><span class="line">	</span><br><span class="line">	class Meta:</span><br><span class="line">		db_table = &apos;course&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="在路由设置连接"><a href="#在路由设置连接" class="headerlink" title="在路由设置连接"></a>在路由设置连接</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^add_course/&apos;, views.add_course),</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="在views-py中建立关联关系"><a href="#在views-py中建立关联关系" class="headerlink" title="在views.py中建立关联关系"></a>在views.py中建立关联关系</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def add_course(request):</span><br><span class="line">	names = [&apos;math&apos;, &apos;chinese&apos;, &apos;english&apos;, &apos;study&apos;]</span><br><span class="line">	for name in names:</span><br><span class="line">		Course.objects.create(c_name=&apos;name&apos;)</span><br><span class="line">		return HttpResponse(&apos;添加课程成功！&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="创建一张course-html用来跳转信息"><a href="#创建一张course-html用来跳转信息" class="headerlink" title="创建一张course.html用来跳转信息"></a>创建一张course.html用来跳转信息</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">		&lt;seltct name=&quot;cous_id&quot;&gt;</span><br><span class="line">			&#123;% for cou in cous %&#125;</span><br><span class="line">				&lt;option calue=&quot;&#123;&#123; cou.id &#125;&#125;&quot;&gt;&#123;&#123; cou.c_name&#125;&#125;&lt;/optio&gt;</span><br><span class="line">			&#123;% &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如果想要将添加的课程和学生对应起来"><a href="#如果想要将添加的课程和学生对应起来" class="headerlink" title="如果想要将添加的课程和学生对应起来"></a>如果想要将添加的课程和学生对应起来</h2><blockquote>
+<h2 id="先在url中创建一个路由来连接添加课程表"><a href="#先在url中创建一个路由来连接添加课程表" class="headerlink" title="先在url中创建一个路由来连接添加课程表"></a>先在url中创建一个路由来连接添加课程表</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^add_stu_course/&apos;, views.add_stu_course),</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="在views-py中建立关联关系-1"><a href="#在views-py中建立关联关系-1" class="headerlink" title="在views.py中建立关联关系"></a>在views.py中建立关联关系</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def add_stu_course(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		cous = Course.objects.all()</span><br><span class="line">		return render(request, &apos;course.html&apos;, &#123;&apos;cous&apos;:cous&#125;)</span><br><span class="line">	if request.method == &apos;POST&apos;:</span><br><span class="line">		# 获取课程的id和学生的id</span><br><span class="line">		c_id = request.POST.get(&apos;cous_id&apos;)</span><br><span class="line">		s_id = request.GET.get(&apos;stu_id&apos;)</span><br><span class="line">		stu = Student.objects.get(pk=s_id)</span><br><span class="line">		course = Student.objects.get(pk=c_id)</span><br><span class="line">		stu.course_set.add(course)</span><br><span class="line">		return HttpResponseRedirect(&apos;/all_stu/&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="（继承）"><a href="#（继承）" class="headerlink" title="（继承）"></a>（继承）</h2><h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><ul>
+<li>标签:格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tag %&#125; &#123;% endtag %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>常用的标签：<figure class="highlight plain"><figcaption><span>/ if / ifequal / block / comment```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> - 变量：格式</span><br><span class="line">```&#123;&#123; var &#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li>父模板：block 块 挖坑<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block xxx %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>子模板 index.html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br><span class="line">&#123;% block xxx %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line">&#123;&#123; block.surper &#125;&#125;  将block块之前定义的内容拿过来</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="引入css-js"><a href="#引入css-js" class="headerlink" title="引入css / js"></a>引入css / js</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">导入： &lt;link href=&apos;/static/xxx.css&apos; rel=&apos;stylesheet&apos;&gt;</span><br><span class="line">或者 &lt;link href=&apos;&#123;% static &apos;xxx.css&apos; %&#125;&apos; rel=&apos;stylesheet&apos;&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>在settings.py中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STATICFILES_DIRS=[os.path.join(BASE_DIR), &apos;static&apos;]</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/第三阶段框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1909,161 +2104,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LV">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LV.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/13/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-13 11:24:47" itemprop="dateCreated datePublished" datetime="2018-10-13T11:24:47+08:00">2018-10-13</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-      
-</div>
-
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2108,7 +2155,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2213,7 +2260,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.4k字</span>
+  <span class="post-count">博客全站共6.9k字</span>
 </div>
 
 
