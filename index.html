@@ -353,6 +353,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/django登录注册/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/26/django登录注册/" itemprop="url">
+                  django登录注册
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-26 19:21:54 / Modified: 20:58:08" itemprop="dateCreated datePublished" datetime="2018-10-26T19:21:54+08:00">2018-10-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><ul>
+<li>跳转重定向，地址是硬编码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def index_redirect(request):</span><br><span class="line">	return HttpResponseRedirect(&apos;/app/index&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>使用反向解析reverse重定向<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def index_redirect(request):</span><br><span class="line">	return HttpResponseRedirect(reverse(&apos;dy:ind&apos;))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="跟新数据库中的数据"><a href="#跟新数据库中的数据" class="headerlink" title="跟新数据库中的数据"></a>跟新数据库中的数据</h2><ul>
+<li>首先在urls.py中设置路由<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^edit_stu/(\d+)/&apos;, views.edit_stu, name=&apos;edit&apos;),</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>在views.py中建立函数与数据库中数据关联<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def deit_stu(request, id):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		stu = Student.objects.get(pk=id)</span><br><span class="line">		return render(request, &apos;edit.html&apos;, &#123;&apos;stu&apos;:stu&#125;)</span><br><span class="line">	if request.method == &apos;POST&apos;:</span><br><span class="line">		name = request.POST.get(&apos;s_name&apos;)</span><br><span class="line">		age = request.POST.get(&apos;s_age&apos;)</span><br><span class="line">		stus =Student.objects.filter(id=id).update(s_name=name, s_age=age)</span><br><span class="line">		return HttpResponseRedirect(reverse(&apos;dy:ind&apos;))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="建立一张普通常见的表单"><a href="#建立一张普通常见的表单" class="headerlink" title="建立一张普通常见的表单"></a>建立一张普通常见的表单</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">	&lt;thead&gt;</span><br><span class="line">		&lt;td&gt;序列&lt;td&gt;</span><br><span class="line">		&lt;td&gt;姓名&lt;td&gt;</span><br><span class="line">		&lt;td&gt;id&lt;td&gt;</span><br><span class="line">	&lt;/thead&gt;</span><br><span class="line">	&lt;tbody&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;/tbody&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<h2 id="建立一个注册登录注销数据库"><a href="#建立一个注册登录注销数据库" class="headerlink" title="建立一个注册登录注销数据库"></a>建立一个注册登录注销数据库</h2><ul>
+<li>前期环境配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">首先配置工作项目</span><br><span class="line">django-admin startprojct day05</span><br><span class="line">然后添加应用</span><br><span class="line">python manage.py startapp user</span><br><span class="line">进入pycharm修改配置属性</span><br><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_MySQldb()</span><br><span class="line">settings.py 里面的</span><br><span class="line">设置父类子类继承关系</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>在数据库中建立表单<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class User(models.Model):</span><br><span class="line">	u_name = models.CharField(max_length=10,unique=True, verbose_name=&apos;姓名&apos;)</span><br><span class="line">	u_password = models.CharField(max_length=200, verbose_name=&apos;密码&apos;)</span><br><span class="line">	create_time = models.CharField(auto_now_add=True, null=True)</span><br><span class="line">	</span><br><span class="line">	class Meta:</span><br><span class="line">		db_table = &apos;user&apos;</span><br><span class="line">		</span><br><span class="line">class UserToken(models.Model):</span><br><span class="line">	token = models.CharField(max_length=30, verbose=&apos;标识符&apos;)</span><br><span class="line">	tu_user = models.OneToOneField(User)</span><br><span class="line">	</span><br><span class="line">	class Meta:</span><br><span class="line">		db_table = &apos;user_token&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><ul>
+<li>先在urls.py中注册路由<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^register/&apos;, views.register),</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在views.py中建立注册与数据库关联关系<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def register(request):</span><br><span class="line">	if request.method == &apos;GET&apos;</span><br><span class="line">		return render(request, &apos;register.html&apos;)</span><br><span class="line">	if request.method == &apos;POST&apos;:</span><br><span class="line">		1.创建用户获取参数</span><br><span class="line">		name = request.POST.get(&apos;name&apos;)</span><br><span class="line">		password = request.POST.get(&apos;pw&apos;)</span><br><span class="line">		password2 = request.POST.get(&apos;pw2&apos;)</span><br><span class="line">		2.校验参数是否完整</span><br><span class="line">		if not all([name, password, password2]):</span><br><span class="line">			msg = &apos;请填写完整参数&apos;</span><br><span class="line">			return render(request, &apos;register.html&apos;, &#123;&apos;msg&apos;: msg&#125;)</span><br><span class="line">		3.判断数据库中是否存在该用户</span><br><span class="line">		if User.objects.filter(u_name=name).first():</span><br><span class="line">			msg = &apos;该用户已经存在，请去登录&apos;</span><br><span class="line">			return render(requesr, &apos;register.html&apos;, &#123;&apos;msg&apos;: msg&#125;)</span><br><span class="line">		4.校验密码是否一致</span><br><span class="line">		if password != password2:</span><br><span class="line">			msg = &apos;密码不一致，请重新输入&apos;</span><br><span class="line">			return render(request, &apos;register.html&apos;, &#123;&apos;msg&apos;: msg&#125;)</span><br><span class="line">		注册</span><br><span class="line">		User.objects.filter(u_name=name, u_password=password)</span><br><span class="line">		return HttpResponseRedirect(reverse(&apos;user:login&apos;))</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>注册页面(register.html)继承父类（base.html）<br><img src="https://upload-images.jianshu.io/upload_images/13692230-de49367b9351279a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+</ul>
+<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><ul>
+<li><p>登录路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^login&apos;, views.login, name=&apos;login&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在views.py 中建立登录与数据库相关联的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">def login(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		return render(request, &apos;login.html&apos;)</span><br><span class="line">	if request.method == &apos;POST&apos;:</span><br><span class="line">		获取参数</span><br><span class="line">		name = request.POST.get(&apos;name&apos;)</span><br><span class="line">		password = request.POST.get(&apos;pw&apos;)</span><br><span class="line">		数据完整性</span><br><span class="line">		if not([name, password]):</span><br><span class="line">			msg = &apos;请填写完整的信息&apos;</span><br><span class="line">			return render(request, &apos;login.html&apos;, &#123;&apos;msg&apos;: msg&#125;)</span><br><span class="line">		验证是否注册</span><br><span class="line">		user = User.objects.filter(u_name=name).first()</span><br><span class="line">		if not user:</span><br><span class="line">			msg = &apos;该账号没有注册，请去注册&apos;</span><br><span class="line">			return render(request, &apos;login.html&apos;, &#123;&apos;msg&apos;: msg&#125;)</span><br><span class="line">		验证密码</span><br><span class="line">		if password != user.u_password:</span><br><span class="line">			msg = &apos;密码错误，请重新输入密码&apos;</span><br><span class="line">			return render(request, &apos;login.html&apos;, &apos;msg&apos;: msg)</span><br><span class="line">		res = HttpResponseRedirect(reverse(&apos;user:index&apos;))</span><br><span class="line">		token = &apos;&apos;</span><br><span class="line">		s = &apos;1234567890qwertyuiopasdfghjklzxcvbnm&apos;</span><br><span class="line">		for i in range(10):</span><br><span class="line">			token += random.choice(s)</span><br><span class="line">		res.set_cookie(&apos;token&apos;, token, max_age=6000)</span><br><span class="line">		存token标识符 重点重点重点</span><br><span class="line">		1.在数据库表中查找user</span><br><span class="line">		user_token = UserToken.object.filter(tu_user=user).first()</span><br><span class="line">		if not user_token:</span><br><span class="line">			如果没有就创建用户对应的标识符</span><br><span class="line">			UserToken.objects.create(token=token, tu_user=user)</span><br><span class="line">		else:</span><br><span class="line">			有的话就把标识符保存到数据库中</span><br><span class="line">			user_token.token = token</span><br><span class="line">			user_token.save()</span><br><span class="line">		return res</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>login.html  / index.html继承base.html<br><img src="https://upload-images.jianshu.io/upload_images/13692230-a274a6ab68ef360c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/13692230-d482f00550f18486.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>检查标识符是否有效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    if request.method == &apos;GET&apos;:</span><br><span class="line">        token = request.COOKIES.get(&apos;token&apos;)</span><br><span class="line">        # 查询标识符是否有效</span><br><span class="line">        user_token = UserToken.objects.filter(token=token).first()</span><br><span class="line">        if not user_token:</span><br><span class="line">            # 查询不到信息，说明用户没有登录</span><br><span class="line">            return HttpResponseRedirect(reverse(&apos;user:login&apos;))</span><br><span class="line">        return render(request, &apos;index.html&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/djangjo-day04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1977,149 +2178,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/你好，hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LV">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LV.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/13/你好，hexo/" itemprop="url">
-                  你好，hexo
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-13 11:54:44" itemprop="dateCreated datePublished" datetime="2018-10-13T11:54:44+08:00">2018-10-13</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-      
-</div>
-
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2171,7 +2229,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2276,7 +2334,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.9k字</span>
+  <span class="post-count">博客全站共7.8k字</span>
 </div>
 
 
