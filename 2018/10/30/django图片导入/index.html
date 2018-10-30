@@ -125,21 +125,24 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="你好，hexo">
-<meta property="og:url" content="http://yoursite.com/2018/10/13/你好，hexo/index.html">
+  <meta name="description" content="添加文章的标题评论和照片（照片是重点）12345678添加一个media文件夹用来存放媒体MEDIA_URL = &amp;apos;/media/&amp;apos;MEDIA_ROOT = os.path.join(BASE_DIR, &amp;apos;media&amp;apos;)url(r&amp;apos;^add_article/&amp;apos;, views.add_article, name=&amp;apos;add_art">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django图片导入">
+<meta property="og:url" content="http://yoursite.com/2018/10/30/django图片导入/index.html">
 <meta property="og:site_name" content="LV.blog">
+<meta property="og:description" content="添加文章的标题评论和照片（照片是重点）12345678添加一个media文件夹用来存放媒体MEDIA_URL = &amp;apos;/media/&amp;apos;MEDIA_ROOT = os.path.join(BASE_DIR, &amp;apos;media&amp;apos;)url(r&amp;apos;^add_article/&amp;apos;, views.add_article, name=&amp;apos;add_art">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-13T03:54:44.229Z">
+<meta property="og:updated_time" content="2018-10-30T11:33:56.929Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，hexo">
+<meta name="twitter:title" content="django图片导入">
+<meta name="twitter:description" content="添加文章的标题评论和照片（照片是重点）12345678添加一个media文件夹用来存放媒体MEDIA_URL = &amp;apos;/media/&amp;apos;MEDIA_ROOT = os.path.join(BASE_DIR, &amp;apos;media&amp;apos;)url(r&amp;apos;^add_article/&amp;apos;, views.add_article, name=&amp;apos;add_art">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/13/你好，hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/30/django图片导入/"/>
 
 
 
@@ -149,7 +152,7 @@
   };
 </script>
 
-  <title>你好，hexo | LV.blog</title>
+  <title>django图片导入 | LV.blog</title>
   
 
 
@@ -353,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/你好，hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/django图片导入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LV">
@@ -370,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">你好，hexo
+          <h1 class="post-title" itemprop="name headline">django图片导入
               
             
           </h1>
@@ -395,9 +398,13 @@
                 
               
 
-              <time title="Created: 2018-10-13 11:54:44" itemprop="dateCreated datePublished" datetime="2018-10-13T11:54:44+08:00">2018-10-13</time>
+              <time title="Created: 2018-10-30 11:54:27 / Modified: 19:33:56" itemprop="dateCreated datePublished" datetime="2018-10-30T11:54:27+08:00">2018-10-30</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -429,7 +436,27 @@
       
 
       
-        
+        <blockquote>
+<h2 id="添加文章的标题评论和照片（照片是重点）"><a href="#添加文章的标题评论和照片（照片是重点）" class="headerlink" title="添加文章的标题评论和照片（照片是重点）"></a>添加文章的标题评论和照片（照片是重点）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">添加一个media文件夹用来存放媒体</span><br><span class="line">MEDIA_URL = &apos;/media/&apos;</span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, &apos;media&apos;)</span><br><span class="line"></span><br><span class="line">url(r&apos;^add_article/&apos;, views.add_article, name=&apos;add_article&apos;),</span><br><span class="line">在项目文件夹中修改urls.py中的配置</span><br><span class="line">增加一个urlpatterns路径，目的是为了找到media文件夹的内容</span><br><span class="line">urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="在models-py中添加字段"><a href="#在models-py中添加字段" class="headerlink" title="在models.py中添加字段"></a>在models.py中添加字段</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Article(models.Model):</span><br><span class="line">	title = models.CharField(max_length=20)</span><br><span class="line">	desc = models.CharField(max_length=150)</span><br><span class="line">	img = models.ImageField(upload_to=&apos;article&apos;)</span><br><span class="line">	create_time = models.DataTimeField(auto_now_add=True)</span><br><span class="line">	</span><br><span class="line">		class Meta:</span><br><span class="line">			db_table = &apos;article&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="在views-py中拿信息"><a href="#在views-py中拿信息" class="headerlink" title="在views.py中拿信息"></a>在views.py中拿信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def add_article(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		return render(request, &apos;article.html&apos;)</span><br><span class="line">	if request.method == &apos;POST&apos;:</span><br><span class="line">		img = request.FILES.get(&apos;img&apos;)   通过FILES来拿照片 重点</span><br><span class="line">		title = request.POST.get(&apos;title&apos;)</span><br><span class="line">		desc = request.POST.get(&apos;desc&apos;)</span><br><span class="line">		</span><br><span class="line">		Article.objects.create(img=img, title=title, desc=desc)</span><br><span class="line">		return HttpResponse(&apos;创建成功！&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="创建一个article网页继承base"><a href="#创建一个article网页继承base" class="headerlink" title="创建一个article网页继承base"></a>创建一个article网页继承base</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br><span class="line">&#123;% block title %&#125;</span><br><span class="line">	blog</span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">	&lt;form action=&quot;&quot; method=&quot;&quot; enctype=&quot;multipart/form-data&quot;&gt;  enctype用来拿图片 必须加 转化为二进制文件</span><br><span class="line">		文章&lt;br&gt;</span><br><span class="line">		&lt;input type=&quot;text&quot; name=&quot;title&quot;&gt;&lt;br&gt;</span><br><span class="line">		描述&lt;br&gt;</span><br><span class="line">		&lt;input type=&quot;text&quot; name&quot;desc&quot;&lt;br&gt;</span><br><span class="line">		图片&lt;input type=&quot;file&quot; name=&quot;img&quot;&gt;&lt;br&gt;</span><br><span class="line">		&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="展示标题，评论，照片"><a href="#展示标题，评论，照片" class="headerlink" title="展示标题，评论，照片"></a>展示标题，评论，照片</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^show_article/(\d+)&apos;, views.show_article, name=&apos;show_article&apos;),</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="在views-py与数据库建立联系"><a href="#在views-py与数据库建立联系" class="headerlink" title="在views.py与数据库建立联系"></a>在views.py与数据库建立联系</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def show_article(request, id):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		article = Article.objects.get(pk=id)</span><br><span class="line">		return render(request, &apos;show_article.html&apos;, &#123;&apos;article&apos;:article&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="show-article继承base"><a href="#show-article继承base" class="headerlink" title="show_article继承base"></a>show_article继承base</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block &apos;base.html&apos; %&#125;</span><br><span class="line">&#123;% block title %&#125;</span><br><span class="line">	展示图片</span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">	标题: &#123;&#123; article.title &#125;&#125;</span><br><span class="line">	描述： &#123;&#123; article.desc &#125;&#125;</span><br><span class="line">	图片：&lt;img src=&quot;/media/&#123;&#123; article.img &#125;&#125;&quot;&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="实现分页"><a href="#实现分页" class="headerlink" title="实现分页"></a>实现分页</h2></blockquote>
+<h3 id="建立一个文章列表的url"><a href="#建立一个文章列表的url" class="headerlink" title="建立一个文章列表的url"></a>建立一个文章列表的url</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^articles/&apos;, views.articles, name=&apos;articles&apos;),</span><br></pre></td></tr></table></figure>
+<h3 id="在views-py中写分页代码"><a href="#在views-py中写分页代码" class="headerlink" title="在views.py中写分页代码"></a>在views.py中写分页代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def articles(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		page = request.GET.get(&apos;page&apos;, 1)</span><br><span class="line">		# 查询所有文章对象，并且进行分页</span><br><span class="line">		articles = Article.objects.all()</span><br><span class="line">		# 将所有文章进行分页，每一页最多三条数据</span><br><span class="line">		paginator = Paginator(articles, 3)</span><br><span class="line">		# 获取那一页的文章信息</span><br><span class="line">		arts = paginator.page(page)</span><br><span class="line">		return render(request, &apos;art.html&apos;, &#123;&apos;arts&apos;:arts&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="articles-html继承base"><a href="#articles-html继承base" class="headerlink" title="articles.html继承base"></a>articles.html继承base</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block title %&#125;</span><br><span class="line">	分页</span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">	&#123;% for article in arts %&#125;</span><br><span class="line">		标题：&#123;&#123; article.title &#125;&#125;&lt;br&gt;</span><br><span class="line">		描述：&#123;&#123; article.desc &#125;&#125;&lt;br&gt;</span><br><span class="line">		照片：&lt;a href=&quot;/media/&#123;&#123; article.html &#125;&#125;&quot;&gt;&#123;&#123; article.img &#125;&#125;&lt;/a&gt;&lt;br&gt;</span><br><span class="line">		====================&lt;br&gt;</span><br><span class="line">	&#123;% endfor %&#125;</span><br><span class="line">	&lt;p&gt;</span><br><span class="line">	&#123;% if arts.has_previous %&#125;</span><br><span class="line">	&lt;a href=&quot;&#123;% url &apos;user:articles&apos; %&#125;page=&#123;&#123; arts.previous_previous_page_number &#125;&#125;&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">	&#123;% endif %&#125;</span><br><span class="line">	&#123;% for i in arts.paginator.page_range %&#125;</span><br><span class="line">		&lt;a href=&quot;&#123;% url &apos;user:articles&apos; %&#125;?page=&#123;&#123; i &#125;&#125;&quot;&gt;&#123;&#123; i &#125;&#125;&lt;/a&gt;</span><br><span class="line">	&#123;% endfor %&#125;</span><br><span class="line">	&#123;% if arts.has_next %&#125;</span><br><span class="line">		&lt;a href=&quot;&#123;% url &apos;user:articles&apos; %&#125;?page=&#123;&#123; arts.next_page_number &#125;&#125;&quot;&gt;下一页&lt;/a&gt;</span><br><span class="line">	&#123;% endif %&#125;</span><br><span class="line">	&lt;/p&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2></blockquote>
+<h3 id="配置日志"><a href="#配置日志" class="headerlink" title="配置日志"></a>配置日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">LOGGING = &#123;</span><br><span class="line">    # 必须是1</span><br><span class="line">    &apos;version&apos;:1,</span><br><span class="line">    # True表示禁用日志</span><br><span class="line">    &apos;disable_existing_loggers&apos;: False,</span><br><span class="line">    # 指定写入到日志文件中的格式</span><br><span class="line">    &apos;formatters&apos;: &#123;</span><br><span class="line">        &apos;default&apos;: &#123;</span><br><span class="line">            &apos;format&apos;: &apos;%(name)s %(asctime)s %(message)s&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;handlers&apos;: &#123;</span><br><span class="line">        &apos;console&apos;: &#123;</span><br><span class="line">            &apos;level&apos;: &apos;INFO&apos;,</span><br><span class="line">            &apos;filename&apos;: &apos;%s/log.txt&apos; % os.path.join(BASE_DIR, &apos;logs&apos;),</span><br><span class="line">            &apos;formatter&apos;: &apos;default&apos;,</span><br><span class="line">            &apos;class&apos;: &apos;logging.handlers.RotatingFileHandler&apos;,</span><br><span class="line">            # 当日志文件大于5M,则做自动备份</span><br><span class="line">            &apos;maxBytes&apos;: 5 * 1024 * 1024,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;loggers&apos;: &#123;</span><br><span class="line">        &apos;&apos;: &#123;</span><br><span class="line">            &apos;handlers&apos;: [&apos;console&apos;],</span><br><span class="line">            &apos;level&apos;: &apos;INFO&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="中间件来控制日志"><a href="#中间件来控制日志" class="headerlink" title="中间件来控制日志"></a>中间件来控制日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class LoggingMiddleware(MiddlewareMixin):</span><br><span class="line"></span><br><span class="line">	def process_request(self, request):</span><br><span class="line">        # 记录当前请求访问服务器的时间请求参数，请求内容</span><br><span class="line">        request.init_time = time.time()</span><br><span class="line">        request.init_body = request.body</span><br><span class="line">        return None</span><br><span class="line">    def process_response(self, request, response):</span><br><span class="line">    	try:</span><br><span class="line">    		# 记录返回响应时间和访问服务器的时间的差，记录返回状态</span><br><span class="line">    		times = time.time() - request.init_time</span><br><span class="line">    		# 响应状态</span><br><span class="line">    		code = response.status_code</span><br><span class="line">    		# 响应内容</span><br><span class="line">    		res_body = response.content</span><br><span class="line">    		# 请求内容</span><br><span class="line">    		req_body = request.init_body</span><br><span class="line">    		# 日志信息</span><br><span class="line">    		msg = &apos;%s %s %s %s&apos; % (time, code, res_body, req_body)</span><br><span class="line">    		# 写入日志</span><br><span class="line">    		logging.info(msg)</span><br><span class="line">    	except Exception as e:</span><br><span class="line">    		logging.critical(&apos;log error, Exception: %s&apos; % e)</span><br><span class="line">    	return response</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -474,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/13/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/10/29/django表单实现登录/" rel="next" title="django表单实现登录">
+                <i class="fa fa-chevron-left"></i> django表单实现登录
               </a>
             
           </div>
@@ -483,10 +510,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/13/hello/" rel="prev" title="hello">
-                hello <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -531,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -605,6 +637,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加文章的标题评论和照片（照片是重点）"><span class="nav-number">1.</span> <span class="nav-text">添加文章的标题评论和照片（照片是重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在models-py中添加字段"><span class="nav-number">2.</span> <span class="nav-text">在models.py中添加字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在views-py中拿信息"><span class="nav-number">3.</span> <span class="nav-text">在views.py中拿信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个article网页继承base"><span class="nav-number">4.</span> <span class="nav-text">创建一个article网页继承base</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展示标题，评论，照片"><span class="nav-number">5.</span> <span class="nav-text">展示标题，评论，照片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在views-py与数据库建立联系"><span class="nav-number">5.1.</span> <span class="nav-text">在views.py与数据库建立联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show-article继承base"><span class="nav-number">5.2.</span> <span class="nav-text">show_article继承base</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现分页"><span class="nav-number">6.</span> <span class="nav-text">实现分页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立一个文章列表的url"><span class="nav-number">6.1.</span> <span class="nav-text">建立一个文章列表的url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在views-py中写分页代码"><span class="nav-number">6.2.</span> <span class="nav-text">在views.py中写分页代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#articles-html继承base"><span class="nav-number">6.3.</span> <span class="nav-text">articles.html继承base</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志"><span class="nav-number">7.</span> <span class="nav-text">日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置日志"><span class="nav-number">7.1.</span> <span class="nav-text">配置日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件来控制日志"><span class="nav-number">7.2.</span> <span class="nav-text">中间件来控制日志</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
