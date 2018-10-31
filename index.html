@@ -353,6 +353,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/权限设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/31/权限设置/" itemprop="url">
+                  权限设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-31 10:03:08 / Modified: 20:26:48" itemprop="dateCreated datePublished" datetime="2018-10-31T10:03:08+08:00">2018-10-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h2 id="AbstractUser-抽象User"><a href="#AbstractUser-抽象User" class="headerlink" title="AbstractUser(抽象User)"></a>AbstractUser(抽象User)</h2></blockquote>
+<h3 id="user-group-permission-的三角关系"><a href="#user-group-permission-的三角关系" class="headerlink" title="user group permission 的三角关系"></a>user group permission 的三角关系</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户表和权限表的ManyToMantFiled()为： user_peimissions</span><br><span class="line">用户表和组表ManyToMantFiled()为：groups</span><br><span class="line">组表和权限表的ManyToManyFiled（）为：permissions</span><br></pre></td></tr></table></figure>
+<h3 id="在models-py中扩展django自带的权限"><a href="#在models-py中扩展django自带的权限" class="headerlink" title="在models.py中扩展django自带的权限"></a>在models.py中扩展django自带的权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MyUser(AbstractUser):</span><br><span class="line">	# 扩展django自带的auth_user表，自定义新增字段</span><br><span class="line">	class Meta:</span><br><span class="line">		permissions = (</span><br><span class="line">		(&apos;add_my_user&apos;, &apos;新增用户权限&apos;),</span><br><span class="line">		(&apos;change_my_username&apos;, &apos;修改用户权限&apos;),</span><br><span class="line">		(&apos;change_my_user_password&apos;, &apos;修改用户密码&apos;),</span><br><span class="line">		(&apos;all_my_user&apos;, &apos;查看用户权限&apos;),</span><br><span class="line">		)</span><br></pre></td></tr></table></figure>
+<h3 id="在settings-py中告诉django-User模型修改为自定义的User模型"><a href="#在settings-py中告诉django-User模型修改为自定义的User模型" class="headerlink" title="在settings.py中告诉django User模型修改为自定义的User模型"></a>在settings.py中告诉django User模型修改为自定义的User模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AUTH_USER_MODEL = &apos;user.MyUser&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="创建用户，并且分配权限（新增用户权限，查看用户权限）"><a href="#创建用户，并且分配权限（新增用户权限，查看用户权限）" class="headerlink" title="创建用户，并且分配权限（新增用户权限，查看用户权限）"></a>创建用户，并且分配权限（新增用户权限，查看用户权限）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def add_user_permission(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		# 1.创建用户</span><br><span class="line">		user = MyUser.objects.create_user(</span><br><span class="line">			username=&apos;张三&apos;,</span><br><span class="line">			password=&apos;123456&apos;,</span><br><span class="line">		)</span><br><span class="line">		premissions = Permission.objects.filter(codename__in=[&apos;add_my_user&apos;, &apos;all_my_user&apos;])</span><br><span class="line">		for permission in permissions:</span><br><span class="line">			user.user_permissions.add(permission)</span><br><span class="line">			return HttpResponse(&apos;创建用户成功&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="用户名为张三的用户，有查看权限才能访问如下的视图函数"><a href="#用户名为张三的用户，有查看权限才能访问如下的视图函数" class="headerlink" title="用户名为张三的用户，有查看权限才能访问如下的视图函数"></a>用户名为张三的用户，有查看权限才能访问如下的视图函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@check_permissions</span><br><span class="line">def index(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		return render(request, &apos;index.html&apos;)</span><br><span class="line">引入修饰器</span><br><span class="line">def check_permissions(func):</span><br><span class="line">	def check(request):</span><br><span class="line">	张三用户查看用户列表，访问index函数</span><br><span class="line">		user = MyUser.objects.filter(username=&apos;张三&apos;).first()</span><br><span class="line">		验证权限</span><br><span class="line">		user_permissions = user.user_permissions.filter(codename=&apos;all_my_user&apos;).first()</span><br><span class="line">		if user_permissions:</span><br><span class="line">			用户有列表权限，则继续访问修饰器里的函数</span><br><span class="line">			return func(request)</span><br><span class="line">		else:</span><br><span class="line">			return HttpResponse(&apos;用户没有查看列表的权限&apos;)</span><br><span class="line">	return check</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="创建组权"><a href="#创建组权" class="headerlink" title="创建组权"></a>创建组权</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def add_group_permission(request):</span><br><span class="line">	group = Group.objects.creat(name=&apos;审核组&apos;)</span><br><span class="line">	ps = Permission.objects.filter(codename__in=[&apos;change_my_user_username&apos;, &apos;change_my_user_password&apos;, &apos;all_my_user&apos;])</span><br><span class="line">	for permission in ps:</span><br><span class="line">		group.permissions.add(permission)</span><br><span class="line">	return HttpResponse(&apos;&apos;创建组权限成功!&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="用户分配租"><a href="#用户分配租" class="headerlink" title="用户分配租"></a>用户分配租</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def add_user_group(request):</span><br><span class="line">	user = MyUser.objects.filter(username=&apos;张三&apos;).first()</span><br><span class="line">	group = Group.objeces.filter(name=&apos;审核组&apos;).first()</span><br><span class="line">	分配租</span><br><span class="line">	user.groups.add(group)</span><br><span class="line">	return HttpResponse(&apos;用户分配租成功！&apos;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<h2 id="展现用户权限"><a href="#展现用户权限" class="headerlink" title="展现用户权限"></a>展现用户权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def show_user_permission(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		user = MyUser.objects.filter(username=&apos;张三&apos;).first()</span><br><span class="line">		return render(request, &apos;permissions.html&apos;, &#123;&apos;user&apos;: user&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<h2 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def login(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		return render(request, &apos;login.html&apos;)</span><br><span class="line">	if request.method == &apos;POST&apos;:</span><br><span class="line">		form = UserLoginForm(request.POST)</span><br><span class="line">		if form.is_valid():</span><br><span class="line">			user = auth.authenticate(username=form.cleaned_data.get(&apos;username&apos;),</span><br><span class="line">				password=form.cleaned_data.get(&apos;password&apos;))</span><br><span class="line">				if user:</span><br><span class="line">					auth.login(request, user)</span><br><span class="line">					return HttpResponseRedirect(reverse(&apos;user:my_index&apos;))</span><br><span class="line">				else:</span><br><span class="line">					return render(request, &apos;login.html&apos;)</span><br><span class="line">		else:</span><br><span class="line">			return render(request, &apos;login.html&apos;, &#123;&apos;errors&apos;: errors&#125;)</span><br><span class="line">表单里的用户信息验证如下</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class UserLoginForm(forms.Form):</span><br><span class="line">	username= form.CharField(max_length=10, min_length=2, error_messages=&#123;&apos;required&apos;: &apos;用户名必填&apos;, &apos;max_length&apos;: &apos;用户名最长不能超过10位&apos;&#125;)</span><br><span class="line">	password = form.CharField(max_length=10, min_length=2, error_messages=&#123;&apos;required&apos;: &apos;密码必填&apos;, &apos;max_length&apos;: &apos;密码最长不能超过10位&apos;&#125;)</span><br><span class="line">	def clean(self):</span><br><span class="line">		user = MyUser.objects.filter(username=self.cleaned_data.get(&apos;username&apos;)).first()</span><br><span class="line">		if not user:</span><br><span class="line">			raise forms.ValidationError(&#123;&apos;usrname&apos;: &apos;该账号没有注册，请去注册&apos;&#125;)</span><br><span class="line">		return slef.cleaned_data</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<h2 id="django自带的权限"><a href="#django自带的权限" class="headerlink" title="django自带的权限"></a>django自带的权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def my_index(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		# 当前登录系统用户</span><br><span class="line">		user = request.user</span><br><span class="line">		# 获取当前用户对应组的权限</span><br><span class="line">		group_permissions = user.get_group_permissions()</span><br><span class="line">		# 获取当前用户的所有权限</span><br><span class="line">		all_permissions = user.get_all_permissions()</span><br><span class="line">		# 判断是否有某个权限</span><br><span class="line">		user.has_perm(&apos;应用app名.权限名&apos;)</span><br><span class="line">		return render(request, &apos;my_index.html&apos;)</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">@permission_required(&apos;&apos;应用app名.权限名&apos;&apos;)</span><br><span class="line">def new_index(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">		return HttpResponse(&apos;需要权限才能查看&apos;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/django图片导入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,7 +568,7 @@
                 
               
 
-              <time title="Created: 2018-10-30 11:54:27 / Modified: 19:33:56" itemprop="dateCreated datePublished" datetime="2018-10-30T11:54:27+08:00">2018-10-30</time>
+              <time title="Created: 2018-10-30 11:54:27 / Modified: 19:37:59" itemprop="dateCreated datePublished" datetime="2018-10-30T11:54:27+08:00">2018-10-30</time>
             
 
             
@@ -459,6 +628,7 @@
 <h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2></blockquote>
 <h3 id="配置日志"><a href="#配置日志" class="headerlink" title="配置日志"></a>配置日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">LOGGING = &#123;</span><br><span class="line">    # 必须是1</span><br><span class="line">    &apos;version&apos;:1,</span><br><span class="line">    # True表示禁用日志</span><br><span class="line">    &apos;disable_existing_loggers&apos;: False,</span><br><span class="line">    # 指定写入到日志文件中的格式</span><br><span class="line">    &apos;formatters&apos;: &#123;</span><br><span class="line">        &apos;default&apos;: &#123;</span><br><span class="line">            &apos;format&apos;: &apos;%(name)s %(asctime)s %(message)s&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;handlers&apos;: &#123;</span><br><span class="line">        &apos;console&apos;: &#123;</span><br><span class="line">            &apos;level&apos;: &apos;INFO&apos;,</span><br><span class="line">            &apos;filename&apos;: &apos;%s/log.txt&apos; % os.path.join(BASE_DIR, &apos;logs&apos;),</span><br><span class="line">            &apos;formatter&apos;: &apos;default&apos;,</span><br><span class="line">            &apos;class&apos;: &apos;logging.handlers.RotatingFileHandler&apos;,</span><br><span class="line">            # 当日志文件大于5M,则做自动备份</span><br><span class="line">            &apos;maxBytes&apos;: 5 * 1024 * 1024,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;loggers&apos;: &#123;</span><br><span class="line">        &apos;&apos;: &#123;</span><br><span class="line">            &apos;handlers&apos;: [&apos;console&apos;],</span><br><span class="line">            &apos;level&apos;: &apos;INFO&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="中间件来控制日志"><a href="#中间件来控制日志" class="headerlink" title="中间件来控制日志"></a>中间件来控制日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class LoggingMiddleware(MiddlewareMixin):</span><br><span class="line"></span><br><span class="line">	def process_request(self, request):</span><br><span class="line">        # 记录当前请求访问服务器的时间请求参数，请求内容</span><br><span class="line">        request.init_time = time.time()</span><br><span class="line">        request.init_body = request.body</span><br><span class="line">        return None</span><br><span class="line">    def process_response(self, request, response):</span><br><span class="line">    	try:</span><br><span class="line">    		# 记录返回响应时间和访问服务器的时间的差，记录返回状态</span><br><span class="line">    		times = time.time() - request.init_time</span><br><span class="line">    		# 响应状态</span><br><span class="line">    		code = response.status_code</span><br><span class="line">    		# 响应内容</span><br><span class="line">    		res_body = response.content</span><br><span class="line">    		# 请求内容</span><br><span class="line">    		req_body = request.init_body</span><br><span class="line">    		# 日志信息</span><br><span class="line">    		msg = &apos;%s %s %s %s&apos; % (time, code, res_body, req_body)</span><br><span class="line">    		# 写入日志</span><br><span class="line">    		logging.info(msg)</span><br><span class="line">    	except Exception as e:</span><br><span class="line">    		logging.critical(&apos;log error, Exception: %s&apos; % e)</span><br><span class="line">    	return response</span><br></pre></td></tr></table></figure>
+<h3 id="在settings-py中配置中间件"><a href="#在settings-py中配置中间件" class="headerlink" title="在settings.py中配置中间件"></a>在settings.py中配置中间件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;utils.middleware.LoggingMiddleware&apos;,</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1978,210 +2148,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/hexo常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LV">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LV.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/15/hexo常用命令/" itemprop="url">
-                  hexo常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-15 20:36:09" itemprop="dateCreated datePublished" datetime="2018-10-15T20:36:09+08:00">2018-10-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-22 19:26:27" itemprop="dateModified" datetime="2018-10-22T19:26:27+08:00">2018-10-22</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>创建一个新的博客</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在本地运行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">或者</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>创建静态文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署到远程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上传通常用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><ul>
-<li>添加文件到版本库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;name&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li><p>提交文件到仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;解释提交信息&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>仓库状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看具体修改了什么</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;name&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>版本回退</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git reset --hard head^ or git reset --hard 版本号</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>记录命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm &lt;name&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-      
-</div>
-
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2233,7 +2199,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2338,7 +2304,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共9.8k字</span>
+  <span class="post-count">博客全站共10.6k字</span>
 </div>
 
 
