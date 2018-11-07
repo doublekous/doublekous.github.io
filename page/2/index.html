@@ -353,6 +353,514 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/redis操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/redis操作/" itemprop="url">
+                  redis操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-18 11:57:25" itemprop="dateCreated datePublished" datetime="2018-10-18T11:57:25+08:00">2018-10-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-19 12:02:51" itemprop="dateModified" datetime="2018-10-19T12:02:51+08:00">2018-10-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>##redis命令查询网站：redisdoc.com<br>配置redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 !ifconfig  修改私网 172.17.139.13</span><br><span class="line">2 port 6379默认</span><br><span class="line">3 appendonly 改为yes</span><br><span class="line">4 password 设置密码</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">一：</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp;  启动服务器并且在后台运行</span><br><span class="line">redis-cli -h 172.17.139.13   连接自己的私网</span><br><span class="line">auth 123456   输入密码</span><br><span class="line">ping</span><br><span class="line">二：</span><br><span class="line">redis-server --port 1234 --requirepass 123456 appendonly yes &gt; redis.log &amp;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>如果连入别人的服务器需要输入该人的公网ip以及密码，进入后能够进行操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get/set+ex(设置存在时间)/del/keys l*/</span><br><span class="line">ttl &lt;name&gt; 查看时-1代表永久存在</span><br><span class="line">默认开了16个库</span><br><span class="line">select1 切换到1库</span><br><span class="line">flushdb 清除当前数据库所有</span><br><span class="line">save 保存数据</span><br><span class="line">bgsave 后台保存</span><br><span class="line">expire name time  给永久的name设置存在时间</span><br><span class="line">incr 增加 </span><br><span class="line">decr 减少</span><br><span class="line">netstat -nap | grep redis 查看redis进程</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>##停止服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill 进程号</span><br><span class="line">Ctrl + c</span><br><span class="line">客户端 &gt; shutdowan</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>redis-benchmark -h ip -a password 检测</p>
+<blockquote>
+<p>##redis常用类型</p>
+<p>###字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">get</span><br><span class="line">set</span><br><span class="line">strlen</span><br><span class="line">incr</span><br><span class="line">desc</span><br><span class="line">setnx 如果不存在才赋值</span><br><span class="line">setex 指定存在时间</span><br><span class="line">mset 添加多对键值对</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##哈希表(最适合保存对象信息)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">创建学生对象</span><br><span class="line">hset stu1 id 1001</span><br><span class="line">hset stu1 name luohao</span><br><span class="line">hset stu1 age 38</span><br><span class="line">hset stu1 gender male</span><br><span class="line">hset stu2 id 1002</span><br><span class="line">hset stu2 name wangdachui</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">获取学生</span><br><span class="line">hget stu1 name</span><br><span class="line">hget sut1 gender</span><br><span class="line"></span><br><span class="line">一次性拿取</span><br><span class="line">hgetall stu1 拿取stu1所有键值对</span><br><span class="line">一次性创建</span><br><span class="line">hmset stu3 id 1003 name liyuanfang gender male age 15</span><br><span class="line"></span><br><span class="line">删除键值对对应的某一个键（某一个字段）</span><br><span class="line">hdel stu3 age</span><br><span class="line">检查键值对中指定的某个字段是否存在</span><br><span class="line">hexists</span><br><span class="line"></span><br><span class="line">hkeys </span><br><span class="line">查看字段长度</span><br><span class="line">hlen stu1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lpush list1 1 2 3 4 5 (结果是5 4 3 2 1)</span><br><span class="line">lpop list1 取list1中的元素</span><br><span class="line">rpush list1 3 30 300 3000(结果是3 30 300 3000)</span><br><span class="line">llen list1 (计算长度)</span><br><span class="line">lrange list1 0 -1 (查看所有元素)</span><br><span class="line">lset list1 1 1000 (将list1中下标1改成1000)</span><br><span class="line">blpop list1 100 阻塞功能</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 10 20 20 30 10 40 40  （集合会自动去重 只有4个元素）</span><br><span class="line">smemebers set1 查看set1中的元素</span><br><span class="line">sunion set1 set2 并集</span><br><span class="line">sdiff set1 set2 交集</span><br><span class="line">sismember set1 10 查看set1中是否有10</span><br><span class="line">srandmember set1 随机取一个元素</span><br><span class="line">srem set1 20 移除set1中的20</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##有序集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zadd zs1 12.5 apple 5.3 orange 3.5 duirin 建立有序集合</span><br><span class="line">zrange zs1 0 -1 查找</span><br><span class="line">zrangebyscore zs1 10 20 指定查找值范围</span><br><span class="line">zrank zs1 apple 排名第几</span><br><span class="line">zreverange zs1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##网站优化两大定律<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1，缓存 - 用空间换时间 (Redis)</span><br><span class="line">2，削峰 -  能推迟的事情都不要马上做 (RabbitMQ / RocketMQ)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##主从复制<br><code>`</code><br>master不用修改任何设置<br>slave修改两条配置：<br>slaveof master的ip地址 master的端口<br>masterrauth master的口令<br>redis-cli 连自己的redis服务器<br>info replication<br>role：master/slave<br>connected_slaves:2</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/pycharm环境下修改mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/17/pycharm环境下修改mysql/" itemprop="url">
+                  pycharm环境下修改mysql
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-17 19:12:34 / Modified: 19:22:13" itemprop="dateCreated datePublished" datetime="2018-10-17T19:12:34+08:00">2018-10-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>##插入操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">def main():</span><br><span class="line">    no = int(input(&apos;部门编号: &apos;))</span><br><span class="line">    name = input(&apos;部门名称: &apos;)</span><br><span class="line">    location = input(&apos;部门所在地: &apos;)</span><br><span class="line">    # 1. 创建数据库连接</span><br><span class="line">    conn = pymysql.connect(host=&apos;localhost&apos;, port=3306,</span><br><span class="line">                           user=&apos;root&apos;, password=&apos;123456&apos;,</span><br><span class="line">                           db=&apos;hrs&apos;, charset=&apos;utf8&apos;,</span><br><span class="line">                           autocommit=True)</span><br><span class="line">    try:</span><br><span class="line">        # 2. 获得游标对象</span><br><span class="line">        with conn.cursor() as cursor:</span><br><span class="line">            # 3. 向数据库服务器发出SQL</span><br><span class="line">            result = cursor.execute(</span><br><span class="line">                query=&apos;insert into TbDept values (%s,%s,%s)&apos;,</span><br><span class="line">                args=(no, name, location))</span><br><span class="line">            if result == 1:</span><br><span class="line">                print(&apos;新增成功!&apos;)</span><br><span class="line">    finally:</span><br><span class="line">        # 4. 关闭连接释放资源</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##更新操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    no = int(input(&apos;部门编号: &apos;))</span><br><span class="line">    name = input(&apos;部门名称: &apos;)</span><br><span class="line">    location = input(&apos;部门所在地: &apos;)</span><br><span class="line">    # 1. 创建数据库连接</span><br><span class="line">    conn = pymysql.connect(host=&apos;localhost&apos;, port=3306,</span><br><span class="line">                           user=&apos;root&apos;, password=&apos;123456&apos;,</span><br><span class="line">                           db=&apos;hrs&apos;, charset=&apos;utf8&apos;,</span><br><span class="line">                           autocommit=True)</span><br><span class="line">    try:</span><br><span class="line">        # 2. 获得游标对象</span><br><span class="line">        with conn.cursor() as cursor:</span><br><span class="line">            # 3. 向数据库服务器发出SQL</span><br><span class="line">            result = cursor.execute(</span><br><span class="line">                query=&apos;update TbDept set dname=%(name)s, dloc=%(loc)s where dno=%(no)s&apos;,</span><br><span class="line">                args=&#123;&apos;no&apos;: no, &apos;name&apos;: name, &apos;loc&apos;: location&#125;)</span><br><span class="line">            if result == 1:</span><br><span class="line">                print(&apos;更新成功!&apos;)</span><br><span class="line">    finally:</span><br><span class="line">        # 4. 关闭连接释放资源</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>##查询操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Dept(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self, no, name, location):</span><br><span class="line">        self.no = no</span><br><span class="line">        self.name = name</span><br><span class="line">        self.location = location</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    # 1. 创建数据库连接</span><br><span class="line">    conn = pymysql.connect(host=&apos;localhost&apos;, port=3306,</span><br><span class="line">                           user=&apos;root&apos;, password=&apos;123456&apos;,</span><br><span class="line">                           db=&apos;hrs&apos;, charset=&apos;utf8&apos;,</span><br><span class="line">                           autocommit=True,</span><br><span class="line">                           cursorclass=pymysql.cursors.DictCursor)</span><br><span class="line">    try:</span><br><span class="line">        # 2. 获得游标对象</span><br><span class="line">        with conn.cursor() as cursor:</span><br><span class="line">            # 3. 向数据库服务器发出SQL</span><br><span class="line">            cursor.execute(</span><br><span class="line">                &apos;&apos;&apos;</span><br><span class="line">                select dno as no, dname as name, dloc as location</span><br><span class="line">                from TbDept</span><br><span class="line">                &apos;&apos;&apos;)</span><br><span class="line">            # print(cursor.fetchone())</span><br><span class="line">            # print(cursor.fetchmany(2))</span><br><span class="line">            print(&apos;编号\t名称\t\t所在地&apos;)</span><br><span class="line">            print(&apos;-&apos; * 20)</span><br><span class="line">            for row in cursor.fetchall():</span><br><span class="line">                dept = Dept(**row)</span><br><span class="line">                print(dept.no, end=&apos;\t&apos;)</span><br><span class="line">                print(dept.name, end=&apos;\t&apos;)</span><br><span class="line">                print(dept.location)</span><br><span class="line"></span><br><span class="line">    finally:</span><br><span class="line">        # 4. 关闭连接释放资源</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/MySQL进阶练习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LV">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LV.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/17/MySQL进阶练习/" itemprop="url">
+                  M有SQL进阶练习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-17 12:03:12 / Modified: 13:13:40" itemprop="dateCreated datePublished" datetime="2018-10-17T12:03:12+08:00">2018-10-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">-- 创建人力资源管理系统数据库</span><br><span class="line">drop database if exists HRS;</span><br><span class="line">create database HRS default charset utf8 collate utf8_bin;</span><br><span class="line"></span><br><span class="line">-- 切换数据库上下文环境</span><br><span class="line">use HRS;</span><br><span class="line"></span><br><span class="line">-- 删除表</span><br><span class="line">drop table if exists TbEmp;</span><br><span class="line">drop table if exists TbDept;</span><br><span class="line"></span><br><span class="line">-- 创建部门表</span><br><span class="line">create table TbDept</span><br><span class="line">(</span><br><span class="line">dno tinyint not null comment &apos;部门编号&apos;,</span><br><span class="line">dname varchar(10) not null comment &apos;部门名称&apos;,</span><br><span class="line">dloc varchar(20) not null comment &apos;部门所在地&apos;,</span><br><span class="line">primary key (dno)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 添加部门记录</span><br><span class="line">insert into TbDept values (10, &apos;会计部&apos;, &apos;北京&apos;);</span><br><span class="line">insert into TbDept values (20, &apos;研发部&apos;, &apos;成都&apos;);</span><br><span class="line">insert into TbDept values (30, &apos;销售部&apos;, &apos;重庆&apos;);</span><br><span class="line">insert into TbDept values (40, &apos;运维部&apos;, &apos;深圳&apos;);</span><br><span class="line"></span><br><span class="line">-- 创建员工表</span><br><span class="line">create table TbEmp</span><br><span class="line">(</span><br><span class="line">eno int not null comment &apos;员工编号&apos;,</span><br><span class="line">ename varchar(20) not null comment &apos;员工姓名&apos;,</span><br><span class="line">job varchar(20) not null comment &apos;员工职位&apos;,</span><br><span class="line">mgr int comment &apos;主管编号&apos;,</span><br><span class="line">sal int not null comment &apos;月薪&apos;,</span><br><span class="line">comm int comment &apos;月补贴&apos;,</span><br><span class="line">dno tinyint comment &apos;所在部门编号&apos;,</span><br><span class="line">primary key (eno)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 添加外键约束</span><br><span class="line">alter table TbEmp add constraint fk_dno foreign key (dno) references TbDept(dno) on delete set null on update cascade; -- 不允许删除，不允许更新</span><br><span class="line"></span><br><span class="line">-- 添加员工记录</span><br><span class="line">insert into TbEmp values (7800, &apos;张三丰&apos;, &apos;总裁&apos;, null, 9000, 1200, 20);</span><br><span class="line">insert into TbEmp values (2056, &apos;乔峰&apos;, &apos;分析师&apos;, 7800, 5000, 1500, 20);</span><br><span class="line">insert into TbEmp values (3088, &apos;李莫愁&apos;, &apos;设计师&apos;, 2056, 3500, 800, 20);</span><br><span class="line">insert into TbEmp values (3211, &apos;张无忌&apos;, &apos;程序员&apos;, 2056, 3200, null, 20);</span><br><span class="line">insert into TbEmp values (3233, &apos;丘处机&apos;, &apos;程序员&apos;, 2056, 3400, null, 20);</span><br><span class="line">insert into TbEmp values (3251, &apos;张翠山&apos;, &apos;程序员&apos;, 2056, 4000, null, 20);</span><br><span class="line">insert into TbEmp values (5566, &apos;宋远桥&apos;, &apos;会计师&apos;, 7800, 4000, 1000, 10);</span><br><span class="line">insert into TbEmp values (5234, &apos;郭靖&apos;, &apos;出纳&apos;, 5566, 2000, null, 10);</span><br><span class="line">insert into TbEmp values (3344, &apos;黄蓉&apos;, &apos;销售主管&apos;, 7800, 3000, 800, 30);</span><br><span class="line">insert into TbEmp values (1359, &apos;胡一刀&apos;, &apos;销售员&apos;, 3344, 1800, 200, 30);</span><br><span class="line">insert into TbEmp values (4466, &apos;苗人凤&apos;, &apos;销售员&apos;, 3344, 2500, null, 30);</span><br><span class="line">insert into TbEmp values (3244, &apos;欧阳锋&apos;, &apos;程序员&apos;, 3088, 3200, null, 20);</span><br><span class="line">insert into TbEmp values (3577, &apos;杨过&apos;, &apos;会计&apos;, 5566, 2200, null, 10);</span><br><span class="line">insert into TbEmp values (3588, &apos;朱九真&apos;, &apos;会计&apos;, 5566, 2500, null, 10);</span><br></pre></td></tr></table></figure>
+<p>– 查询薪资最高的员工姓名和工资<br>select ename,sal from TbEmp<br>where sal=(select max(sal) from TbEmp);</p>
+<p>– 查询员工的姓名和年薪((月薪+补贴)<em>12)<br>select ename as 姓名,(sal+if(comm,comm,0)) </em> 12 as 年薪 from TbEmp;</p>
+<p>– 查询有员工的部门的编号和人数<br>select dno as 部门编号, count(eno) as 人数 from TbEmp group by dno;</p>
+<p>– 查询所有部门的名称和人数</p>
+<p>select dname,ifnull(total,0)<br>from  TbDept t1 left join<br>(select dno,count(dno) as total from TbEmp group by dno) t2<br>on t1.dno=t2.dno;<br>– 查询薪资最高的员工(Boss除外)的姓名和工资<br>select ename,sal from TbEmp<br>where sal=(select max(sal) from TbEmp where mgr is not null);</p>
+<p>– 查询薪水超过平均薪水的员工的姓名和工资<br>select ename,sal from TbEmp<br>where sal&gt;(select avg(sal) from TbEmp);</p>
+<p>– 查询薪水超过其所在部门平均薪水的员工的姓名、部门编号和工资<br>select ename,t1.dno,sal,avgsal from TbEmp t1,<br>(select dno,avg(sal) as avgsal from TbEmp group by dno) t2<br>where t1.dno=t2.dno and sal&gt;avgsal;</p>
+<p>select ename,dname,sal from TbEmp t1 inner join<br>(select dno,avg(sal) as avgsal from TbEmp group by dno) t2<br>on t1.dno=t2.dno and sal&gt;avgsal inner join TbDept t3<br>on t3.dno=t2.dno;</p>
+<p>– 查询部门中薪水最高的人姓名、工资和所在部门名称</p>
+<p>– 查询主管的姓名<br>select ename,job  from TbEmp<br>where eno in (select distinct mgr from TbEmp where mgr is not null);</p>
+<p>select ename,job from TbEmp t1<br>where exists(select ‘x’ from TbEmp t2 where t1.eno=t2.mgr);</p>
+<p>– 说明：去重操作和集合效率是非常低下的<br>– 通常建议用exists或者not exists操作来替代去重和集合运算。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+      
+</div>
+
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/MySQL基础练习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1421,7 +1929,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1526,7 +2034,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共11.3k字</span>
+  <span class="post-count">博客全站共12.3k字</span>
 </div>
 
 
